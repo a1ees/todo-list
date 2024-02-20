@@ -107,10 +107,9 @@
   const getLocaleError = useGetLocaleError()
 
   const { t } = useI18n()
-  const { loadProfile } = useProfile()
   const localePath = useLocalePath()
   const defaultAvatar = useDefaultAvatar()
-  
+
   const loading = ref(false)
   const avatar = ref<string | null>(null) // base64
   const login = reactive({

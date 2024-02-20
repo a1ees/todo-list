@@ -1,0 +1,17 @@
+.todo {
+  margin: 0 auto;
+  max-width: 880px;
+
+  .todoForm {
+    margin-bottom: 30px;
+  }
+
+  .todoContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+    .column {
+      width: 100%;
+    }
+  }
+}

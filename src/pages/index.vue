@@ -1,11 +1,13 @@
 <template>
   <div :class="$style.container">
-    Home
+    <TodoSection />
   </div>
 </template>
 
-<script setup lang="ts">
-  useSeoMeta({ title: 'Главная страница' })
+<script lang="ts" setup>
+
+useSeoMeta({title: 'Главная страница'})
+
 </script>
 
-<style lang="scss" src="./index.module.scss" module></style>
+<style lang="scss" module src="./index.module.scss"></style>

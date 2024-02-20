@@ -1,7 +1,7 @@
 <template>
   <header :class="$style.header">
     <div :class="$style.cw">
-      Header
+      To-do list
     </div>
   </header>
 </template>
