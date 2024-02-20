@@ -13,7 +13,7 @@ import type {TodoColumn, Tasks} from "@/ts";
 
 const props = defineProps<{
   column?: TodoColumn
-  tasks?: Tasks[]
+  tasks?: Tasks[] | null
 }>()
 
 const filteredTasks = (columnStatus: number) => {

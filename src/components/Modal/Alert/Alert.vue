@@ -5,7 +5,7 @@
         {{ title || 'Уведомление' }}
       </ModalAssetsTitle>
       <div :class="$style.body">
-        <span 
+        <span
           v-for="text in body"
           :data-type="text.type"
         >
@@ -13,7 +13,7 @@
         </span>
       </div>
       <div :class="$style.buttons">
-        <UIButton fill type="stroked" @click="submit">
+        <UIButton fill type="stroked" @click="submit" :disabled="isButtonDisabled">
           {{ submitTitle || 'Ок' }}
         </UIButton>
         <NuxtLink :class="$style.link" v-if="link?.name && link?.href" :to="localePath(link.href)" target="_blank">
@@ -28,12 +28,13 @@
 
 <script setup lang="ts">
   const emit = defineEmits<{ hide: [] }>()
-  const props = defineProps<{ 
+  const props = defineProps<{
     visible?: boolean,
     title?: string,
     submitTitle?: string,
     body?: { content: string, type?: 'default' | 'red' | 'bold' }[]
     link?: { name: string; href: string }
+    isButtonDisabled?: boolean
   }>()
 
   const localePath = useLocalePath()

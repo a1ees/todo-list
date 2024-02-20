@@ -10,19 +10,16 @@ const intlUnits: Record<Intl.RelativeTimeFormatUnit, number> = {
 }
 
 export function getRelativeDate(
-  at: string,
+  at: number,
   untilUnit?: Intl.RelativeTimeFormatUnit | null | undefined,
-  intlParameters?: {
-    locale?: string | string[],
-    options?: Intl.RelativeTimeFormatOptions
-  },
+  intlParameters?: { options: { numeric: string; style: string }; locale: string },
 ) {
   const rtf1 = new Intl
     .RelativeTimeFormat(intlParameters?.locale || 'en', {
       numeric: "auto",
       ...(intlParameters?.options || {})
     });
-  
+
   const dateAt = new Date(at)
   const localeDate = dateAt.toLocaleDateString()
   const localeTime = dateAt.toLocaleTimeString(undefined, { timeStyle: 'short' })
@@ -41,7 +38,7 @@ export function getRelativeDate(
     months() { return this.days() / 30 },
     years() { return this.days() / 365 }
   };
-  
+
   for (const elm of [
     "years", "months", "weeks", "days",
     "hours", "minutes", "seconds"

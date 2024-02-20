@@ -1,20 +1,26 @@
 <template>
-    <div :class="$style.todo">
-      <TodoForm :class="$style.todoForm" />
-      <div :class="$style.todoContainer">
-        <div
-          v-for="column in todoColumns"
-          :key="column.status"
-          :class="$style.column"
-        >
-          <TodoColumn v-if="todo" :column="column" :tasks="todo"/>
-        </div>
+  <div v-if="typeof todo !== 'string'" :class="$style.todo">
+    <TodoForm :class="$style.todoForm"/>
+    <div :class="$style.todoContainer">
+      <div
+        v-for="column in todoColumns"
+        :key="column.status"
+        :class="$style.column"
+      >
+        <TodoColumn :column="column" :tasks="todo"/>
       </div>
     </div>
+  </div>
+  <ModalAlert
+    v-else
+    :title="'Превышен лимит запросов на сервер'"
+    :visible="true"
+    @hide="refresh"/>
 </template>
 
 <script lang="ts" setup>
-const { data: todo } = useAsyncData('todo', async () => (
+
+const {data: todo, refresh} = useAsyncData('todo', async () => (
   await $api.todo.getList()
 ))
 
@@ -31,6 +37,7 @@ const todoColumns = ref([
     title: "Completed",
     status: 3
   }]);
+
 
 </script>
 
